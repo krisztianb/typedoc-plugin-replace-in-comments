@@ -13,6 +13,7 @@
         "typedocplugin"
     ],
     "devDependencies": {
+        "@types/node": "^14.6.3",
         "husky": "^4.2.5",
         "prettier": "^2.0.5",
         "rimraf": "^3.0.2",

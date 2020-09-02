@@ -1,6 +1,7 @@
 import { Application } from "typedoc";
 import { Context, Converter } from "typedoc/dist/lib/converter";
 import { PluginOptions } from "./plugin_options";
+import { ReplacementPatternCollection } from "./replacement_pattern_collection";
 
 /**
  * The ReplaceInComments plugin.
@@ -17,6 +18,9 @@ import { PluginOptions } from "./plugin_options";
 export class Plugin {
     /** The options of this plugin. */
     private options = new PluginOptions();
+
+    /** The replacement patterns read from the config file. */
+    private replacementPatterns: ReplacementPatternCollection | undefined;
 
     /**
      * Initializes the plugin.
@@ -51,6 +55,8 @@ export class Plugin {
      */
     public onConverterBegin(context: Context): void {
         this.options.readValuesFromApplication(context.converter.owner.application);
+
+        this.replacementPatterns = ReplacementPatternCollection.readFromFile(this.options.configFilePath);
     }
 
     /**
