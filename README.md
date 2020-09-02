@@ -7,8 +7,10 @@ This can be useful for:
 
 -   Creating links from ticket IDs (eg: replace "GH-12345" with a link to https://github.com/your-name/the-repo/issues/12345)
 -   Creating links from author names (eg: link "Your Name" to your GitHub or corporate profile page)
--   Replacing custom placeholders with an image
--   If you find other useful scenarios let me know and I might include them here. ;-)
+-   Replacing internal URLs with external ones
+-   Replacing custom placeholders with anything you like (eg: images)
+-   Remove text from comments
+-   etc.
 
 ## Installation
 
