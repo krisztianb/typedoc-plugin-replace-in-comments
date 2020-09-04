@@ -1,7 +1,7 @@
 import { Application } from "typedoc";
 import { Context, Converter } from "typedoc/dist/lib/converter";
+import { Config, ReplacementInfo } from "./config";
 import { PluginOptions } from "./plugin_options";
-import { ReplacementPatternCollection } from "./replacement_pattern_collection";
 
 /**
  * The ReplaceInComments plugin.
@@ -12,31 +12,23 @@ import { ReplacementPatternCollection } from "./replacement_pattern_collection";
  *
  * # How does it do it?
  *
- * The plugin scans through all comments and uses the replacment patterns specified
+ * The plugin scans through all comments of all reflections and uses the replacment patterns specified
  * by the user to replace text in these comments.
  */
 export class Plugin {
     /** The options of this plugin. */
     private options = new PluginOptions();
 
-    /** The replacement patterns read from the config file. */
-    private replacementPatterns: ReplacementPatternCollection | undefined;
+    /** The replacement info read from the config file. */
+    private replaces = new Array<ReplacementInfo>();
 
     /**
      * Initializes the plugin.
      * @param typedoc The TypeDoc application.
      */
     public initialize(typedoc: Application): void {
-        this.addOptionsToApplication(typedoc);
-        this.subscribeToApplicationEvents(typedoc);
-    }
-
-    /**
-     * Adds the plugin's options to the application's options.
-     * @param typedoc The TypeDoc application.
-     */
-    private addOptionsToApplication(typedoc: Application): void {
         this.options.addToApplication(typedoc);
+        this.subscribeToApplicationEvents(typedoc);
     }
 
     /**
@@ -55,8 +47,7 @@ export class Plugin {
      */
     public onConverterBegin(context: Context): void {
         this.options.readValuesFromApplication(context.converter.owner.application);
-
-        this.replacementPatterns = ReplacementPatternCollection.readFromFile(this.options.configFilePath);
+        this.replaces = Config.readFromFile(this.options.configFilePath).replacements;
     }
 
     /**
@@ -64,6 +55,29 @@ export class Plugin {
      * @param context Describes the current state the converter is in.
      */
     public onConverterResolveBegin(context: Context): void {
-        // TODO
+        const project = context.project;
+
+        // go through all the reflections' comments
+        for (const key in project.reflections) {
+            const reflection = project.reflections[key];
+
+            if (reflection && reflection.comment) {
+                reflection.comment.shortText = this.replaceInComment(reflection.comment.shortText);
+                reflection.comment.text = this.replaceInComment(reflection.comment.text);
+            }
+        }
+    }
+
+    /**
+     * Applies the replacement info to the comment.
+     * @param comment The comment on which to apply the replacement info.
+     * @returns The modified comment.
+     */
+    private replaceInComment(comment: string): string {
+        for (const enty of this.replaces) {
+            comment = comment.replace(enty.pattern, enty.replace);
+        }
+
+        return comment;
     }
 }
