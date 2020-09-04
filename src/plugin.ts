@@ -79,8 +79,8 @@ export class Plugin {
      * @returns The modified comment.
      */
     private replaceInComment(comment: string): string {
-        for (const enty of this.replaces) {
-            comment = comment.replace(enty.pattern, enty.replace);
+        for (const entry of this.replaces) {
+            comment = comment.replace(entry.pattern, entry.replace);
         }
 
         return comment;
