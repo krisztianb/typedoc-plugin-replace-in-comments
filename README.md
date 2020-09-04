@@ -1,7 +1,7 @@
 # typedoc-plugin-replace-in-comments
 
-This is a plugin for TypeDoc that replaces text in comments. You can specify matching patterns and the text they should
-be replaced with.
+This is a plugin for [https://github.com/TypeStrong/typedoc](TypeDoc) that replaces text in comments.
+You can specify matching patterns and the text they should be replaced with.
 
 This can be useful for:
 
