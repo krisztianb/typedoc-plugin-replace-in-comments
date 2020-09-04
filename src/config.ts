@@ -45,7 +45,7 @@ export class Config {
 
                 if (typeof fileEntry.pattern === "string" && typeof fileEntry.replace === "string") {
                     config._replacements.push({
-                        pattern: new RegExp(String(fileEntry.pattern)),
+                        pattern: new RegExp(String(fileEntry.pattern), "g"),
                         replace: String(fileEntry.replace),
                     });
                 } else {
