@@ -47,7 +47,10 @@ export class Plugin {
      */
     public onConverterBegin(context: Context): void {
         this.options.readValuesFromApplication(context.converter.owner.application);
-        this.replaces = Config.readFromFile(this.options.configFilePath).replacements;
+
+        if (this.options.configFilePath) {
+            this.replaces = Config.readFromFile(this.options.configFilePath).replacements;
+        }
     }
 
     /**
@@ -55,15 +58,17 @@ export class Plugin {
      * @param context Describes the current state the converter is in.
      */
     public onConverterResolveBegin(context: Context): void {
-        const project = context.project;
+        if (this.replaces.length > 0) {
+            const project = context.project;
 
-        // go through all the reflections' comments
-        for (const key in project.reflections) {
-            const reflection = project.reflections[key];
+            // go through all the reflections' comments
+            for (const key in project.reflections) {
+                const reflection = project.reflections[key];
 
-            if (reflection && reflection.comment) {
-                reflection.comment.shortText = this.replaceInComment(reflection.comment.shortText);
-                reflection.comment.text = this.replaceInComment(reflection.comment.text);
+                if (reflection && reflection.comment) {
+                    reflection.comment.shortText = this.replaceInComment(reflection.comment.shortText);
+                    reflection.comment.text = this.replaceInComment(reflection.comment.text);
+                }
             }
         }
     }

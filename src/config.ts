@@ -32,7 +32,7 @@ export class Config {
      */
     public static readFromFile(path: string): Config {
         if (!fs.existsSync(path)) {
-            throw new Error(`replace-in-comments says: Cannot find config file ${path}`);
+            throw new Error(`replace-in-comments says: Cannot find config file '${path}'`);
         }
 
         const fileContent = JSON.parse(fs.readFileSync(path, "utf8"));
