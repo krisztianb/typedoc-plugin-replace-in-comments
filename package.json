@@ -8,8 +8,6 @@
     },
     "license": "ISC",
     "keywords": [
-        "uml",
-        "typedoc",
         "typedocplugin"
     ],
     "devDependencies": {
