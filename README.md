@@ -35,14 +35,14 @@ The file structure is as follows:
 ```javascript
 [
     {
-        pattern: "(GH-(d+))",
-        replace: "[$1](https://github.com/your-name/the-repo/issues/$2)",
+        "pattern": "(GH-(\\d+))",
+        "replace": "[$1](https://github.com/your-name/the-repo/issues/$2)"
     },
     {
-        pattern: "The King Himself",
-        replace: "https://github.com/the-king-himself",
-    },
-];
+        "pattern": "The King Himself",
+        "replace": "[King Kong](https://github.com/the-king-himself)"
+    }
+]
 ```
 
 ## Bugs
