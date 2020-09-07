@@ -43,9 +43,13 @@ export class Config {
             for (let i = 0; i < fileContent.length; ++i) {
                 const fileEntry = fileContent[i];
 
-                if (typeof fileEntry.pattern === "string" && typeof fileEntry.replace === "string") {
+                if (
+                    typeof fileEntry.pattern === "string" &&
+                    typeof fileEntry.flags === "string" &&
+                    typeof fileEntry.replace === "string"
+                ) {
                     config._replacements.push({
-                        pattern: new RegExp(String(fileEntry.pattern), "g"),
+                        pattern: new RegExp(fileEntry.pattern, fileEntry.flags),
                         replace: String(fileEntry.replace),
                     });
                 } else {

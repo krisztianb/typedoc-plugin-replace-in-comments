@@ -35,14 +35,30 @@ The file structure is as follows:
 ```javascript
 [
     {
-        "pattern": "(GH-(\\d+))",
-        "replace": "[$1](https://github.com/your-name/the-repo/issues/$2)"
+        pattern: "(GH-(\\d+))",
+        flags: "g",
+        replace: "[$1](https://github.com/your-name/the-repo/issues/$2)",
     },
     {
-        "pattern": "The King Himself",
-        "replace": "[King Kong](https://github.com/the-king-himself)"
-    }
-]
+        pattern: "The King Himself",
+        flags: "gi",
+        replace: "[King Kong](https://github.com/king-kong)",
+    },
+];
+```
+
+The file must include an array of objects with the following properties:
+
+-   **pattern**: The regular expression pattern used to find the text that should be replaced.
+-   **flags**: Flags for the regular expression pattern.
+-   **replace**: The text that should be used as a replacement.
+
+The properties of each object in the array are passed to a call of
+[String.replace](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace)
+as follows:
+
+```javascript
+comment = comment.replace(new Regex(PATTERN, FLAGS), REPLACE);
 ```
 
 ## Bugs
