@@ -1,5 +1,7 @@
 # typedoc-plugin-replace-in-comments
 
+[![NPM Version](https://badge.fury.io/js/typedoc-plugin-replace-in-comments.svg)](https://badge.fury.io/js/typedoc-umlclass) [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=67UU75EUH4S8A)
+
 This is a plugin for [TypeDoc](https://github.com/TypeStrong/typedoc) that replaces text in comments.
 You can specify matching patterns and the text they should be replaced with.
 
