@@ -11,7 +11,7 @@ This can be useful for:
 -   Creating links from author names (eg: link "Your Name" to your GitHub or corporate profile page)
 -   Replacing internal URLs with external ones
 -   Replacing custom placeholders with anything you like (eg: images)
--   Remove text from comments
+-   Remove URLs or other text from comments
 -   etc.
 
 ## Installation
@@ -27,29 +27,38 @@ configure this plugin as described below.
 
 ## Configuration
 
-This plugin adds a new option to TypeDoc: `--replace-in-comments-config <PATH_TO_CONFIG_FILE>`
+This plugin adds a new option to TypeDoc: `replace-in-comments-config`
 
-Use this option to specify the path to the JSON config file of this plugin.
-The config file defines the regular expression matching patterns and the texts they should be replaced with.
+The option defines the regular expression matching patterns and the texts they should be replaced with.
+You can specify the config using one of the following methods:
 
-The file structure is as follows:
+-   In your `tsconfig.json` file (within the `typedocOptions` object) OR
+-   In your `typedoc.json` file
+
+**Example of a typedoc.json configuration:**
 
 ```javascript
-[
-    {
-        "pattern": "(GH-(\\d+))",
-        "flags": "g",
-        "replace": "[$1](https://github.com/your-name/the-repo/issues/$2)",
-    },
-    {
-        "pattern": "The King Himself",
-        "flags": "gi",
-        "replace": "[King Kong](https://github.com/king-kong)",
-    },
-];
+{
+    "module": "es2015",
+    "mode": "file",
+    "moduleResolution": "node",
+    "out": "docs",
+    "replace-in-comments-config": [
+        {
+            "pattern": "(GH-(\\d+))",
+            "flags": "g",
+            "replace": "[$1](https://github.com/your-name/the-repo/issues/$2)"
+        },
+        {
+            "pattern": "The King Himself",
+            "flags": "gi",
+            "replace": "[The King Himself](https://github.com/the-king-himself)"
+        }
+    ]
+}
 ```
 
-The file must include an array of objects with the following properties:
+The option must define an array of objects with the following properties:
 
 | Property    | Description                                                                   |
 | ----------- | ----------------------------------------------------------------------------- |
