@@ -34,7 +34,7 @@ export class PluginOptions {
      * @param appOptions The TypeDoc application.
      */
     public readValuesFromApplication(typedoc: Application): void {
-        this._replacements = typedoc.options.getValue("replace-in-comments-config");
+        this._replacements = typedoc.options.getValue("replace-in-comments-config") ?? [];
     }
 
     /**
