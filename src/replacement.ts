@@ -1,7 +1,7 @@
 /**
  * A type describing what should be replaced by what.
  */
-export type ReplaceInfo = {
+export type Replacement = {
     /** The regular expression pattern used to find the text that should be replaced. */
     pattern: string;
 

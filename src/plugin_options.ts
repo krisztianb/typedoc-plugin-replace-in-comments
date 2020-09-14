@@ -1,5 +1,5 @@
 import { Application, ParameterType } from "typedoc";
-import { ReplaceInfo as Replacement } from "./replacement";
+import { Replacement } from "./replacement";
 
 /**
  * Extend typedoc's options with the plugin's option using declaration merging.
