@@ -1,6 +1,5 @@
 import { Application } from "typedoc";
 import { Context, Converter } from "typedoc/dist/lib/converter";
-import { Config, ReplacementInfo } from "./config";
 import { PluginOptions } from "./plugin_options";
 
 /**
@@ -18,9 +17,6 @@ import { PluginOptions } from "./plugin_options";
 export class Plugin {
     /** The options of this plugin. */
     private options = new PluginOptions();
-
-    /** The replacement info read from the config file. */
-    private replaces = new Array<ReplacementInfo>();
 
     /**
      * Initializes the plugin.
@@ -47,10 +43,6 @@ export class Plugin {
      */
     public onConverterBegin(context: Context): void {
         this.options.readValuesFromApplication(context.converter.owner.application);
-
-        if (this.options.configFilePath) {
-            this.replaces = Config.readFromFile(this.options.configFilePath).replacements;
-        }
     }
 
     /**
@@ -58,7 +50,7 @@ export class Plugin {
      * @param context Describes the current state the converter is in.
      */
     public onConverterResolveBegin(context: Context): void {
-        if (this.replaces.length > 0) {
+        if (this.options.replacements.length > 0) {
             const project = context.project;
 
             // go through all the reflections' comments
@@ -79,8 +71,8 @@ export class Plugin {
      * @returns The modified comment.
      */
     private replaceInComment(comment: string): string {
-        for (const entry of this.replaces) {
-            comment = comment.replace(entry.pattern, entry.replace);
+        for (const replacement of this.options.replacements) {
+            comment = comment.replace(new RegExp(replacement.pattern, replacement.flags), replacement.replace);
         }
 
         return comment;

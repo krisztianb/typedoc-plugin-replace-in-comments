@@ -1,24 +1,32 @@
-import { Application, ParameterType, StringDeclarationOption } from "typedoc";
+import { Application, ParameterType } from "typedoc";
+import { ReplaceInfo as Replacement } from "./replacement";
+
+/**
+ * Extend typedoc's options with the plugin's option using declaration merging.
+ */
+declare module "typedoc" {
+    export interface TypeDocOptionMap {
+        "replace-in-comments-config": Replacement[];
+    }
+}
 
 /**
  * Class storing the options of the plugin.
  */
 export class PluginOptions {
-    /** Specifies the path to the config file of the plugin. */
-    private configFilePathOption = {
-        type: ParameterType.String,
-        name: "replace-in-comments-config",
-        help: "The path to the config file containing the replacement patterns.",
-        defaultValue: "",
-        value: "",
-    };
+    /** The replace information. */
+    private _replacements: Replacement[] = [];
 
     /**
      * Adds the command line options of the plugin to the TypeDoc application.
      * @param typedoc The TypeDoc application.
      */
     public addToApplication(typedoc: Application): void {
-        typedoc.options.addDeclaration(this.configFilePathOption as StringDeclarationOption);
+        typedoc.options.addDeclaration({
+            type: ParameterType.Mixed,
+            name: "replace-in-comments-config",
+            help: "The array with the objects defining the replacement patterns.",
+        });
     }
 
     /**
@@ -26,14 +34,14 @@ export class PluginOptions {
      * @param appOptions The TypeDoc application.
      */
     public readValuesFromApplication(typedoc: Application): void {
-        this.configFilePathOption.value = typedoc.options.getValue(this.configFilePathOption.name) as string;
+        this._replacements = typedoc.options.getValue("replace-in-comments-config");
     }
 
     /**
-     * Returns the path to the config file of the plugin.
-     * @returns The path to the config file of the plugin.
+     * Returns the replace information.
+     * @returns The replace information.
      */
-    get configFilePath(): string {
-        return this.configFilePathOption.value;
+    get replacements(): Replacement[] {
+        return this._replacements;
     }
 }
