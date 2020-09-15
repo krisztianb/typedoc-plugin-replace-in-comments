@@ -21,6 +21,7 @@ export class PluginOptions {
      * Adds the command line options of the plugin to the TypeDoc application.
      * @param typedoc The TypeDoc application.
      */
+    // eslint-disable-next-line class-methods-use-this
     public addToApplication(typedoc: Application): void {
         typedoc.options.addDeclaration({
             type: ParameterType.Mixed,

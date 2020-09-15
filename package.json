@@ -15,6 +15,7 @@
         "@typescript-eslint/eslint-plugin": "^4.1.1",
         "@typescript-eslint/parser": "^4.1.1",
         "eslint": "^7.9.0",
+        "eslint-plugin-ordered-imports": "^0.3.0",
         "husky": "^4.3.0",
         "prettier": "^2.1.1",
         "rimraf": "^3.0.2",
@@ -38,7 +39,7 @@
         "/dist"
     ],
     "scripts": {
-        "lint": "npx eslint src/**",
+        "lint": "npx eslint ./src",
         "format": "npx prettier --check ./src",
         "clean": "rimraf dist",
         "build": "npx tsc",
