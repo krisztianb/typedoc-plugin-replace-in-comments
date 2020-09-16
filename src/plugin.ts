@@ -16,13 +16,13 @@ import { PluginOptions } from "./plugin_options";
  */
 export class Plugin {
     /** The options of this plugin. */
-    private options = new PluginOptions();
+    private readonly options = new PluginOptions();
 
     /**
      * Initializes the plugin.
      * @param typedoc The TypeDoc application.
      */
-    public initialize(typedoc: Application): void {
+    public initialize(typedoc: Readonly<Application>): void {
         this.options.addToApplication(typedoc);
         this.subscribeToApplicationEvents(typedoc);
     }
@@ -32,16 +32,16 @@ export class Plugin {
      * in the particular doc generation phases.
      * @param typedoc The TypeDoc application.
      */
-    private subscribeToApplicationEvents(typedoc: Application): void {
-        typedoc.converter.on(Converter.EVENT_BEGIN, (c: Context) => this.onConverterBegin(c));
-        typedoc.converter.on(Converter.EVENT_RESOLVE_BEGIN, (c: Context) => this.onConverterResolveBegin(c));
+    private subscribeToApplicationEvents(typedoc: Readonly<Application>): void {
+        typedoc.converter.on(Converter.EVENT_BEGIN, (c: Readonly<Context>) => this.onConverterBegin(c));
+        typedoc.converter.on(Converter.EVENT_RESOLVE_BEGIN, (c: Readonly<Context>) => this.onConverterResolveBegin(c));
     }
 
     /**
      * Triggered when the converter begins converting a project.
      * @param context Describes the current state the converter is in.
      */
-    public onConverterBegin(context: Context): void {
+    public onConverterBegin(context: Readonly<Context>): void {
         this.options.readValuesFromApplication(context.converter.owner.application);
     }
 
@@ -49,7 +49,7 @@ export class Plugin {
      * Triggered when the TypeDoc converter begins resolving a project.
      * @param context Describes the current state the converter is in.
      */
-    public onConverterResolveBegin(context: Context): void {
+    public onConverterResolveBegin(context: Readonly<Context>): void {
         if (this.options.replacements.length > 0) {
             const project = context.project;
 
@@ -57,7 +57,7 @@ export class Plugin {
             for (const key in project.reflections) {
                 const reflection = project.reflections[key];
 
-                if (reflection && reflection.comment) {
+                if (reflection.comment) {
                     reflection.comment.shortText = this.replaceInComment(reflection.comment.shortText);
                     reflection.comment.text = this.replaceInComment(reflection.comment.text);
                 }
