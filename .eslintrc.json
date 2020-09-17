@@ -83,6 +83,7 @@
             "Undefined",
             "undefined"
         ],
+        "max-len": ["error", { "code": 120, "ignoreComments": false, "ignoreTrailingComments": false }],
         "no-lonely-if": "error",
         "no-nested-ternary": "error",
         "no-unneeded-ternary": "error",
@@ -116,7 +117,6 @@
         "@typescript-eslint/prefer-for-of": ["error"],
         "@typescript-eslint/prefer-literal-enum-member": ["error"],
         "@typescript-eslint/prefer-readonly": ["error"],
-        // "@typescript-eslint/prefer-readonly-parameter-types": ["error"], // buggy :-(
         "@typescript-eslint/promise-function-async": ["error"],
 
         // Other plugin rules
