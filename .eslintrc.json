@@ -18,7 +18,7 @@
     "rules": {
         // Possible errors
         "no-await-in-loop": "error",
-        "no-loss-of-precision": "error",
+        "no-extra-semi": "off", // in favor of @typescript-eslint/no-extra-semi (part of recommended)
         "no-promise-executor-return": "error",
         "no-template-curly-in-string": "error",
         "no-unreachable-loop": "error",
@@ -30,32 +30,27 @@
         "consistent-return": "error",
         "curly": "error",
         "default-case-last": "error",
-        "default-param-last": "error",
         "eqeqeq": "error",
         "no-constructor-return": "error",
         "no-else-return": "error",
-        "no-empty-function": "error",
         "no-extend-native": "error",
         "no-extra-bind": "error",
         "no-extra-label": "error",
         "no-floating-decimal": "error",
         "no-implicit-coercion": "error",
-        "no-invalid-this": "error",
         "no-iterator": "error",
         "no-lone-blocks": "error",
-        "no-loop-func": "error",
         "no-multi-str": "error",
         "no-new": "error",
         "no-new-wrappers": "error",
         "no-octal-escape": "error",
         "no-proto": "error",
+        "no-redeclare": "off", // in favor of @typescript-eslint/no-redeclare
         "no-return-assign": "error",
-        "no-return-await": "error",
         "no-self-compare": "error",
         "no-sequences": "error",
         "no-throw-literal": "error",
         "no-unmodified-loop-condition": "error",
-        "no-unused-expressions": "error",
         "no-useless-call": "error",
         "no-useless-concat": "error",
         "no-useless-return": "error",
@@ -67,8 +62,8 @@
 
         // Variables
         "no-label-var": "error",
-        "no-shadow": "error",
         "no-undef-init": "error",
+        "no-unused-vars": "off", // in favor of @typescript-eslint/no-unused-vars (part of recommended)
 
         // Stylistic issues
         "id-denylist": [
@@ -91,14 +86,14 @@
 
         // ECMAScript 6
         "no-confusing-arrow": "error",
+        "no-dupe-class-members": "off", // in favor of @typescript-eslint/no-dupe-class-members
         "no-duplicate-imports": "error",
-        "no-useless-constructor": "error",
         "no-var": "error",
         "prefer-const": "error",
         "prefer-rest-params": "error",
         "no-useless-rename": "error",
 
-        // TypeScript plugin rules
+        // TypeScript plugin basic rules
         "@typescript-eslint/naming-convention": "error",
         "@typescript-eslint/consistent-type-assertions": "error",
         "@typescript-eslint/consistent-type-definitions": ["error", "type"],
@@ -118,6 +113,19 @@
         "@typescript-eslint/prefer-literal-enum-member": ["error"],
         "@typescript-eslint/prefer-readonly": ["error"],
         "@typescript-eslint/promise-function-async": ["error"],
+
+        // TypeScript plugin extension rules
+        "@typescript-eslint/default-param-last": ["error"],
+        "@typescript-eslint/no-dupe-class-members": ["error"],
+        "@typescript-eslint/no-invalid-this": ["error"],
+        "@typescript-eslint/no-loop-func": ["error"],
+        "@typescript-eslint/no-loss-of-precision": ["error"],
+        "@typescript-eslint/no-redeclare": ["error"],
+        "@typescript-eslint/no-shadow": ["error"],
+        "@typescript-eslint/no-unused-expressions": ["error"],
+        "@typescript-eslint/no-use-before-define": ["error"],
+        "@typescript-eslint/no-useless-constructor": ["error"],
+        "@typescript-eslint/return-await": ["error"],
 
         // Other plugin rules
         "ordered-imports/ordered-imports": [
