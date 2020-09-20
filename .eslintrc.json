@@ -26,7 +26,7 @@
         "require-atomic-updates": "error",
 
         // Best practices
-        "class-methods-use-this": "error",
+        "class-methods-use-this": "warn",
         "consistent-return": "error",
         "curly": "error",
         "default-case-last": "error",
@@ -78,7 +78,7 @@
             "Undefined",
             "undefined"
         ],
-        "max-len": ["error", { "code": 120, "ignoreComments": false, "ignoreTrailingComments": false }],
+        "max-len": ["error", { "code": 120, "ignoreComments": false, "ignoreTrailingComments": false }], // length should match Prettier config
         "no-lonely-if": "error",
         "no-nested-ternary": "error",
         "no-unneeded-ternary": "error",
@@ -112,6 +112,7 @@
         "@typescript-eslint/prefer-for-of": ["error"],
         "@typescript-eslint/prefer-literal-enum-member": ["error"],
         "@typescript-eslint/prefer-readonly": ["error"],
+        "@typescript-eslint/prefer-readonly-parameter-types": ["warn"],
         "@typescript-eslint/promise-function-async": ["error"],
 
         // TypeScript plugin extension rules

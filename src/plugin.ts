@@ -22,7 +22,7 @@ export class Plugin {
      * Initializes the plugin.
      * @param typedoc The TypeDoc application.
      */
-    public initialize(typedoc: Readonly<Application>): void {
+    public initialize(typedoc: Application): void {
         this.options.addToApplication(typedoc);
         this.subscribeToApplicationEvents(typedoc);
     }
@@ -32,7 +32,7 @@ export class Plugin {
      * in the particular doc generation phases.
      * @param typedoc The TypeDoc application.
      */
-    private subscribeToApplicationEvents(typedoc: Readonly<Application>): void {
+    private subscribeToApplicationEvents(typedoc: Application): void {
         typedoc.converter.on(Converter.EVENT_BEGIN, (c: Readonly<Context>) => this.onConverterBegin(c));
         typedoc.converter.on(Converter.EVENT_RESOLVE_BEGIN, (c: Readonly<Context>) => this.onConverterResolveBegin(c));
     }
