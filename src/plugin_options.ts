@@ -22,7 +22,8 @@ export class PluginOptions {
      * Adds the command line options of the plugin to the TypeDoc application.
      * @param typedoc The TypeDoc application.
      */
-    public addToApplication(typedoc: Application): void {
+    // eslint-disable-next-line class-methods-use-this
+    public addToApplication(typedoc: Readonly<Application>): void {
         typedoc.options.addDeclaration({
             type: ParameterType.Mixed,
             name: "replace-in-comments-config",
