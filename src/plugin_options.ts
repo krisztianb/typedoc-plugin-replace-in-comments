@@ -34,7 +34,7 @@ export class PluginOptions {
 
     /**
      * Reads the values of the plugin options from the application options.
-     * @param appOptions The TypeDoc application.
+     * @param typedoc The TypeDoc application.
      */
     public readValuesFromApplication(typedoc: Readonly<Application>): void {
         this._replacements = typedoc.options.getValue("replace-in-comments-config");
