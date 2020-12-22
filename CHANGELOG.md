@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2020-12-22
+
+### Changes
+
+-   Cache regular expressions for better performance
+
 ## [2.0.0] - 2020-09-14
 
 ### Changes
@@ -17,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 First release
 
-[unreleased]: https://github.com/krisztianb/typedoc-plugin-replace-in-comments/compare/v2.0.0...HEAD
+[unreleased]: https://github.com/krisztianb/typedoc-plugin-replace-in-comments/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/krisztianb/typedoc-plugin-replace-in-comments/releases/tag/v2.1.0
 [2.0.0]: https://github.com/krisztianb/typedoc-plugin-replace-in-comments/releases/tag/v2.0.0
 [1.0.0]: https://github.com/krisztianb/typedoc-plugin-replace-in-comments/releases/tag/v1.0.0
