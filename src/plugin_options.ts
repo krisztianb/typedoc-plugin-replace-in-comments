@@ -1,22 +1,46 @@
 import { Application, ParameterType } from "typedoc";
-import { Replacement } from "./replacement";
 
 /**
  * Extend typedoc's options with the plugin's option using declaration merging.
  */
 declare module "typedoc" {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions -- This is not a separate type.
     export interface TypeDocOptionMap {
-        "replace-in-comments-config": Replacement[];
+        "replace-in-comments-config"?: ReplaceInfoFromConfig[];
     }
 }
+
+/**
+ * A type describing what should be replaced by what as it is defined by the user in the config.
+ */
+type ReplaceInfoFromConfig = {
+    /** The regular expression pattern used to find the text that should be replaced. */
+    pattern: string;
+
+    /** Flags for the regular expression pattern. */
+    flags?: string;
+
+    /** The text that should be used as a replacement. */
+    replace: string;
+};
+
+/**
+ * A type describing what should be replaced by what using a regular expression.
+ */
+type ReplaceInfoWithRegex = {
+    /** The regular expression object used to find the text that should be replaced. */
+    regex: RegExp;
+
+    /** The text that should be used as a replacement. */
+    replace: string;
+};
 
 /**
  * Class storing the options of the plugin.
  */
 export class PluginOptions {
     /** The replace information. */
-    private _replacements: Replacement[] = [];
+    private _replacements: ReplaceInfoWithRegex[] = [];
 
     /**
      * Adds the command line options of the plugin to the TypeDoc application.
@@ -37,14 +61,21 @@ export class PluginOptions {
      * @param typedoc The TypeDoc application.
      */
     public readValuesFromApplication(typedoc: Readonly<Application>): void {
-        this._replacements = typedoc.options.getValue("replace-in-comments-config");
+        const config = typedoc.options.getValue("replace-in-comments-config");
+
+        // Convert patterns and flags to regular expressions and cache them
+        if (config) {
+            this._replacements = config.map((x) => {
+                return { regex: new RegExp(x.pattern, x.flags), replace: x.replace };
+            });
+        }
     }
 
     /**
      * Returns the replace information.
      * @returns The replace information.
      */
-    public get replacements(): Replacement[] {
+    public get replacements(): ReplaceInfoWithRegex[] {
         return this._replacements;
     }
 }

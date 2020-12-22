@@ -3,7 +3,7 @@ import { Context, Converter } from "typedoc/dist/lib/converter";
 import { PluginOptions } from "./plugin_options";
 
 /**
- * The ReplaceInComments plugin.
+ * The "replace in comments" plugin.
  *
  * # What does it do?
  *
@@ -72,7 +72,7 @@ export class Plugin {
      */
     private replaceInComment(comment: string): string {
         for (const replacement of this.options.replacements) {
-            comment = comment.replace(new RegExp(replacement.pattern, replacement.flags), replacement.replace);
+            comment = comment.replace(replacement.regex, replacement.replace);
         }
 
         return comment;
