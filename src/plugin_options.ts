@@ -66,7 +66,7 @@ export class PluginOptions {
         // Convert patterns and flags to regular expressions and cache them
         if (config) {
             this._replacements = config.map((x) => {
-                return { regex: new RegExp(x.pattern, x.flags), replace: x.replace };
+                return { regex: new RegExp(x.pattern, x.flags ?? "g"), replace: x.replace };
             });
         }
     }

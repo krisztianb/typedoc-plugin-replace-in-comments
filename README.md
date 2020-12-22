@@ -46,7 +46,6 @@ You can specify the config using one of the following methods:
     "replace-in-comments-config": [
         {
             "pattern": "(GH-(\\d+))",
-            "flags": "g",
             "replace": "[$1](https://github.com/your-name/the-repo/issues/$2)"
         },
         {
@@ -63,7 +62,7 @@ The option must define an array of objects with the following properties:
 | Property    | Description                                                                   |
 | ----------- | ----------------------------------------------------------------------------- |
 | **pattern** | The regular expression pattern used to find the text that should be replaced. |
-| **flags**   | Flags for the regular expression pattern.                                     |
+| **flags**   | Flags for the regular expression pattern. (optional - defaults to `"g"`)      |
 | **replace** | The text that should be used as a replacement.                                |
 
 The properties are passed to a call of

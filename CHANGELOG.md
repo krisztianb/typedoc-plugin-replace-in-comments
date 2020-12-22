@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changes
 
 -   Cache regular expressions for better performance
+-   Flags are now optional in the config and default to "g"
 
 ## [2.0.0] - 2020-09-14
 
