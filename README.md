@@ -39,9 +39,6 @@ You can specify the config using one of the following methods:
 
 ```javascript
 {
-    "module": "es2015",
-    "mode": "file",
-    "moduleResolution": "node",
     "out": "docs",
     "replace-in-comments-config": [
         {
