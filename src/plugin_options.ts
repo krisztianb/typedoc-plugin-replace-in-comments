@@ -6,7 +6,7 @@ import { Application, ParameterType } from "typedoc";
 declare module "typedoc" {
     // eslint-disable-next-line @typescript-eslint/consistent-type-definitions -- This is not a separate type.
     export interface TypeDocOptionMap {
-        "replace-in-comments-config"?: ReplaceInfoFromConfig[];
+        "replace-in-comments-config": ReplaceInfoFromConfig[];
     }
 }
 
@@ -64,11 +64,9 @@ export class PluginOptions {
         const config = typedoc.options.getValue("replace-in-comments-config");
 
         // Convert patterns and flags to regular expressions and cache them
-        if (config) {
-            this._replacements = config.map((x) => {
-                return { regex: new RegExp(x.pattern, x.flags ?? "g"), replace: x.replace };
-            });
-        }
+        this._replacements = config.map((x) => {
+            return { regex: new RegExp(x.pattern, x.flags ?? "g"), replace: x.replace };
+        });
     }
 
     /**
