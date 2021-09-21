@@ -1,5 +1,4 @@
-import { Application } from "typedoc";
-import { Context, Converter } from "typedoc/dist/lib/converter";
+import { Application, Context, Converter } from "typedoc";
 import { PluginOptions } from "./plugin_options";
 
 /**
