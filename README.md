@@ -25,6 +25,10 @@ $ npm install typedoc-plugin-replace-in-comments --save-dev
 TypeDoc automatically detects plugins installed via npm. After installation TypeDoc can be used normally and you can
 configure this plugin as described below.
 
+### Requirements
+
+The plugin requires TypeDoc version 0.21.x or 0.22.x to be installed.
+
 ## Configuration
 
 This plugin adds a new option to TypeDoc: `replace-in-comments-config`
