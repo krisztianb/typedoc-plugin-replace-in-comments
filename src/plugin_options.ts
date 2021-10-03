@@ -61,7 +61,8 @@ export class PluginOptions {
      * @param typedoc The TypeDoc application.
      */
     public readValuesFromApplication(typedoc: Readonly<Application>): void {
-        const config = typedoc.options.getValue("replace-in-comments-config");
+        // Yes this type assertion sucks, but there's something wrong with the Type Definitions of TypeDoc
+        const config = typedoc.options.getValue("replace-in-comments-config") as unknown as ReplaceInfoFromConfig[];
 
         // Convert patterns and flags to regular expressions and cache them
         this._replacements = config.map((x) => {
