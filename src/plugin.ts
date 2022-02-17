@@ -59,6 +59,7 @@ export class Plugin {
                 if (reflection.comment) {
                     reflection.comment.shortText = this.replaceInComment(reflection.comment.shortText);
                     reflection.comment.text = this.replaceInComment(reflection.comment.text);
+                    reflection.comment.tags.forEach((t) => (t.text = this.replaceInComment(t.text)));
                 }
             }
         }
@@ -70,9 +71,7 @@ export class Plugin {
      * @returns The modified comment.
      */
     private replaceInComment(comment: string): string {
-        for (const replacement of this.options.replacements) {
-            comment = comment.replace(replacement.regex, replacement.replace);
-        }
+        this.options.replacements.forEach((r) => (comment = comment.replace(r.regex, r.replace)));
 
         return comment;
     }
