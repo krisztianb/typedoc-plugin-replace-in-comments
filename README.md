@@ -2,6 +2,8 @@
 
 # typedoc-plugin-replace-in-comments
 
+**THIS PLUGIN HAS BEEN DEPRECATED IN FAVOR OF A NEW PLUGIN:** [typedoc-plugin-replace-text](https://github.com/krisztianb/typedoc-plugin-replace-text)
+
 This is a plugin for [TypeDoc](https://github.com/TypeStrong/typedoc) that replaces text in comments.
 You can specify matching patterns and the text they should be replaced with.
 
